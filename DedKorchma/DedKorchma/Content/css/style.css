@@ -1,0 +1,154 @@
+﻿body {
+    font-family: 'Cuprum';
+    font-weight: 300;
+    font-size: 16px;
+    color: #f5f5f5;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+.navbar-brand {
+    font-family: 'Marck Script';
+    font-size: 2em;
+    color: #f5f5f5;
+    text-shadow: 2px 2px 20px black;
+}
+
+
+.navbar-inverse .navbar-nav > li > a { font-size: 18px; }
+
+@media (min-width: 768px) {
+    .navbar.affix {
+        padding: 3px 0;
+        background-color: #000;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        -ms-transition: padding .3s;
+        -o-transition: padding .3s;
+        transition: padding .3s;
+        border: none;
+        background-color: rgba(38, 38, 38, .67);
+    }
+}
+
+.header {
+
+    background: url(../Images/bg-main.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.header__text {
+    text-align: center;
+    padding-top: 200px;
+    padding-bottom: 50px;
+    text-shadow: 3px 2px 9px black, 0 0 1em black;
+}
+
+.header__text h1 {
+    font-size: 50px;
+    font-family: 'Marck Script';
+}
+
+.menu {
+    text-align: center;
+    color: #333333;
+}
+
+.menu__text {
+    margin-top: 90px;
+    margin-bottom: 70px;
+}
+
+.menu-item {
+    color: #1B1A1A;
+    height: 520px;
+}
+
+.menu-item img { height: 300px; }
+
+.menu-item img:hover { height: 310px; }
+
+.menu-item__text {
+    width: 250px;
+    margin: 0 auto;
+    color: #7F7F7F;
+    margin-bottom: 90px;
+}
+
+.about {
+    min-height: 650px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #e6e6e6;
+    background-image: url('/Content/Images/bg-about.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: left bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.about__content {
+    background-color: rgba(0, 0, 0, 0.5);
+    -ms-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    text-shadow: 2px 2px 40px black;
+    font-family: 'Marck Script';
+}
+
+.about__content__title {
+    margin-bottom: 35px;
+    font-size: 40px;
+}
+
+.about__content__text {
+
+    font-size: 25px;
+    padding: 15px 4px 30px 4px;
+}
+
+.mapinfo { background-color: burlywood; }
+
+.mapinfo-text {
+    color: white;
+    font-size: 12px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.footer { background-color: #1b1a1a; }
+
+.footer-content {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.footer-content__item__text ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.footer-content__item__text li { list-style-type: none; }
+
+.footer-content__item__title {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.footer-datetime { margin-bottom: 5px; }

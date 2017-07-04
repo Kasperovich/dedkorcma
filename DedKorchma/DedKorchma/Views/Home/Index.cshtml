@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<section class="header">
+    <div class="container">
+        <div class="header__text">
+            <h2>Добро пожаловать</h2>
+            <h3>Кафе</h3>
+            <h1>«Дзедава Карчма»</h1>
+        </div>
+    </div>
+</section>
+<section class="menu">
+    <div class="container">
+        <div class="menu__text">
+            <h2>
+                Яства из белорусской, европейской кухонь, которые готовятся
+                здешними поварами, понравятся гостям корчмы с абсолютно разными вкусами.
+
+            </h2>
+        </div>
+        <div class="row">
+            <div class="menu-item col-md-4">
+                <img src="~/Content/Images/eda3-circle.png" />
+                <div class="menu-item__title">
+                    <h3>Кроличьи почки</h3>
+                </div>
+                <div class="menu-item__text">
+                    <p>
+                        кроличьи почки, сельдерей стеблевой, лук порей, вино белое, масло растительное., сушеные травы
+                    </p>
+                </div>
+            </div>
+            <div class="menu-item col-md-4">
+                <img src="~/Content/Images/eda4-circle.png" />
+                <div class="menu-item__title">
+                    <h3>Стэйк-бабочка из семги</h3>
+                </div>
+                <div class="menu-item__text">
+                    филе семги, масло растительное, лимон, салат, зелень
+                </div>
+            </div>
+            <div class="menu-item col-md-4">
+                <img src="~/Content/Images/eda5-circle.png" />
+                <div class="menu-item__title">
+                    <h3>«Тещин язык»</h3>
+                </div>
+                <div class="menu-item__text">
+                    <p>
+                        язык говяжий, шампиньоны свежие, лук репчатый, масло растительное, сметана, сыр сычужный, зелень укропа, специи, сушеные травы
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about">
+    <div class="container">
+        <div class="row">
+            <div class="about__content col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-6 col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-3">
+                <div class="about__content__title">
+                    <h1>
+                        Загородное кафе «Дзедава Карчма»
+                    </h1>
+                </div>
+                <div class="about__content__text">
+                    <p>
+                        Когда хочется гармонии души и тела, когда слова «тепло» и «уют» становятся ключевыми,
+                        когда некуда торопиться… Когда время останавливается и реальное соприкасается с желанным,
+                        когда в потоке непрерывного движения хочется замереть и вернуться к истокам,
+                        к истинно белорусскому радушию. Такому, как в кафе «Дзедава карчма»!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mapinfo">
+    <div class="container">
+        <div class="mapinfo-text col-xs-12">
+            <hr/>
+            <h3 class="text-center">
+                Расположившись в живописном месте недалеко от города, оно по-домашнему открывает перед вами все двери и приглашает в
+                надежный и спокойный мир старины. Живая музыка настраивает на лирический лад и задушевные беседы, обещает удивительное
+                путешествие и душевное умиротворение!
+            </h3>
+            <hr/>
+        </div>
+    </div>
+</section>
+<section id="map">
+    
+</section>
+@section css{
+}
+
+@section scripts
+{
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=wMxiGiesR5qSaCdv1OSmGB7lKLDTKuaK&amp;width=100%&amp;height=450&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true&id=map"></script>
+}

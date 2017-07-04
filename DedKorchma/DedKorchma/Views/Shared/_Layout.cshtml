@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дзедава Карчма</title>
+    
+    @*<link href="https://fonts.googleapis.com/css?family=Cuprum|Lobster|Ubuntu" rel="stylesheet">*@ 
+    <link href="https://fonts.googleapis.com/css?family=Cuprum|Lobster|Marck+Script|Ubuntu" rel="stylesheet"> 
+    <link href="http://webfonts.ru/import/christmasscript.css" rel="stylesheet">
+
+
+    @RenderSection("seo", required: false)
+    @Styles.Render("~/bundles/style")
+    @RenderSection("css", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header col-md-3">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                        @Html.ActionLink("Дзедава карчма", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapses col-md-offset-6">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("ГЛАВНАЯ", "Index", "Home")</li>
+                        <li>@Html.ActionLink("МЕНЮ", "Index", "Home")</li>
+                        <li>@Html.ActionLink("КОНТАКТЫ", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("НВОСТИ", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("СТАТЬИ", "Contact", "Home")</li>
+                    </ul>
+                    @*@Html.Partial("_LoginPartial")*@
+                </div>
+            </div>
+        </div>
+    </div>
+      @RenderBody()
+<section class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="row">
+                <div class="footer-content__item col-xs-12 col-md-4">
+                    <div class="footer-content__item__title">
+                        <h3>Последние новости</h3>
+                    </div>
+                    <div class="footer-content__item__text">
+                        <p>
+                            Сюда можно подгружать последние новости, хз как это будет реализовано, но все возможно.
+                            Славен явно знает.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-content__item col-xs-12 col-md-4">
+                    <div class="footer-content__item__title">
+                        <h3>Контакты</h3>
+                    </div>
+                    <div class="footer-content__item__text">
+                        <ul>
+                            <li>+375 29 180-80-08 (кафе)</li>
+                            <li>+375 44 500-00-55 (гостиница и баня)</li>
+                            <li>+375 29 133-37-33</li>
+                            <li>Время работы: c 12:00 до 00:00 пн-вс</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-content__item col-xs-12 col-md-4">
+                    <div class="footer-content__item__title">
+                        <h3>ООО «Дедова корчма»</h3>
+                    </div>
+                    <div class="footer-content__item__text">
+                        <p>
+                            Юридический адрес: Минская обл.,Дзержинский р-н,Фанипольский с/с,с/с Фанипольский,19-км автодороги Р1 Минск-Брест, здание мини-кафе "Дедова-корчма"КОМ.12
+                            УНП: 690250525
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-datetime">
+            &copy; @DateTime.Now.Year - ООО «Дедова корчма»
+        </div>
+    </div>
+</section>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+    <script>
+    $('#navbar').affix({
+    offset: {
+    top: 8
+    }
+    })
+    </script>
+
+</body>
+</html>
