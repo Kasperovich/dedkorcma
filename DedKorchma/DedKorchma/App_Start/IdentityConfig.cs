@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,8 +21,32 @@ namespace DedKorchma
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            // настройка логина, пароля отправителя
+            var from = ConfigurationManager.AppSettings["smtpFromEmail"];
+            var pass = ConfigurationManager.AppSettings["smtpFromPassword"];
+            var smtpClient = ConfigurationManager.AppSettings["smtpClient"];
+            var smtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["smtpPort"]);
+
+            // адрес и порт smtp-сервера, с которого мы и будем отправлять письмо
+            var client = new SmtpClient(smtpClient, smtpPort)
+            {
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential(from, pass),
+                EnableSsl = true
+            };
+
+
+            // создаем письмо: message.Destination - адрес получателя
+            var mail = new MailMessage(from, message.Destination)
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true,
+
+            };
+
+            return client.SendMailAsync(mail);
         }
     }
 
@@ -55,10 +81,10 @@ namespace DedKorchma
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

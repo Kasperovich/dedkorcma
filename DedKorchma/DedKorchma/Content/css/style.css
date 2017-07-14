@@ -161,3 +161,10 @@
 }
 
 .footer-datetime { margin-bottom: 5px; }
+
+.form-account {
+    color: #1b1a1a;
+    font-family: 'Cuprum';
+    margin-top: 100px;
+    height: 70vh;
+}
