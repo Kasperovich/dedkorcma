@@ -44,5 +44,6 @@ namespace DedKorchma.Models.Entities
         public DbSet<News> News { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Product> Products { get; set; }
+
     }
 }

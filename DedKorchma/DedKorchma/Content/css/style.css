@@ -23,24 +23,22 @@
 }
 
 
-@media (min-width: 768px) {
-    .navbar.affix {
-        padding: 3px 0;
-        background-color: #000;
-    }
-}
-
-@media (min-width: 768px) {
-    .navbar {
-        -webkit-transition: padding .3s;
+#affix {
+            -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         -ms-transition: padding .3s;
         -o-transition: padding .3s;
         transition: padding .3s;
-        border: none;
-        background-color: rgba(38, 38, 38, .67);
+    background-color: rgba(38, 38, 38, .67);
+    border: none;
     }
-}
+
+.navbar {
+        padding: 3px 0;
+        border: none;
+        background-color: black;
+    }
+
 
 .header {
 
