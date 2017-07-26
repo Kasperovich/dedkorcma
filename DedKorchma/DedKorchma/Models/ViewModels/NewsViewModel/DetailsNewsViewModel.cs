@@ -16,8 +16,6 @@ namespace DedKorchma.Models.ViewModels.NewsViewModel
         [Display(Name = "Текст")]
         public string Body { get; set; }
         public string HeadImage { get; set; }
-        [Display(Name = "Активирован")]
-        public bool IsDeleted { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата создания")]
@@ -35,7 +33,11 @@ namespace DedKorchma.Models.ViewModels.NewsViewModel
 
         public DetailsNewsViewModel(News news)
         {
-            
+            Name = news.Name;
+            Body = news.Body;
+            HeadImage = news.HeadImage;
+            DateCreated = news.DateCreated;
+            Title = news.Title;
         }
     }
 }

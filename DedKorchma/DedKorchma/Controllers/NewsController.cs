@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DedKorchma.BL.Service;
+using DedKorchma.Models.Entities;
 using DedKorchma.Models.ViewModels.NewsViewModel;
 
 namespace DedKorchma.Controllers
@@ -17,7 +18,22 @@ namespace DedKorchma.Controllers
             var news = NewsService.GetAll()
                 .Select(n => new NewsViewModel(n))
                 .ToList();
-            return View(news);
+            if (Request.IsAuthenticated)
+            {
+                return View(news);
+            }
+            else
+            {
+                var activationNews =new List<NewsViewModel>();
+                foreach (var item in news)
+                {
+                    if (item.IsDeleted)
+                    {
+                        activationNews.Add(item);
+                    }
+                }
+                return View(activationNews);
+            }
         }
 
         public ActionResult GetLastNewsPartial()
@@ -94,7 +110,8 @@ namespace DedKorchma.Controllers
         {
             try
             {
-                var news
+                var news = NewsService.GetbyUrl(url);
+                return View(new DetailsNewsViewModel(news));
             }
             catch (Exception ex)
             {

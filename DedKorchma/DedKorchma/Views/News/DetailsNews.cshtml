@@ -1,0 +1,18 @@
+﻿@model DedKorchma.Models.ViewModels.NewsViewModel.DetailsNewsViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+<div class="container form-account">
+    <div class="Details-news">
+        <div class="Details-news__img" style="background-image: url(@Url.Content(Model.HeadImage)"> </div>
+        <div class="Details-news__Name">@Model.Name</div>
+        <div class="Details-news__Datetime">@Model.DateCreated</div>
+        <hr/>
+        <div class="Details-news__Body">@Model.Body</div>
+    </div>
+    <hr/>
+    <p>
+        @Html.ActionLink("Вернутся к новостям", "Index")
+    </p>
+</div>

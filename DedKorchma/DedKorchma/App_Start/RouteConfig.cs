@@ -16,7 +16,11 @@ namespace DedKorchma
 
             routes.LowercaseUrls = true;
             routes.AppendTrailingSlash = true;
-
+            routes.MapRoute(
+                name: "News/Details",
+                url: "news/details/{url}",
+                defaults: new { controller = "News", action = "DetailsNews", url= UrlParameter.Optional }
+                );
             routes.MapRoute(
                 name: "Admin",
                 url: "admin",
