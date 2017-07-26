@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DedKorchma.Models.ViewModels.NewsViewModel.NewsViewModel>
+
+<div class="footer-content__item__text">
+    <ul id="news">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="news__date">
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </div>
+                
+                <div class="news__title">
+                <a href="#">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+               </div>
+              
+            </li>
+        }
+    </ul>
+</div>
+<script>
+    function tick(){
+	$("#news li:first").slideUp(function(){
+		$(this).appendTo($("#news")).slideDown();
+	});
+};
+
+    setInterval(function(){
+	tick();
+    }, 6000);
+</script>

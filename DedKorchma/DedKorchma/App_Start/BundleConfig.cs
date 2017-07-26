@@ -20,13 +20,22 @@ namespace DedKorchma
                 "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap/bootstrap.js",
+                "~/Scripts/bootstrap/bootstrap-datetimepicker.js",
+                 "~/Scripts/bootstrap/bootstrap-datetimepicker.min.js",
+                 "~/Scripts/bootstrap/bootstrap.min.js",
+                "~/Scripts/respond.js",
+                "~/Scripts/moment.js",
+                "~/Scripts/moment-with-locales.js",
+                "~/Scripts/moment-with-locales.min.js"));
 
             bundles.Add(new StyleBundle("~/bundles/style").Include(
+                "~/Content/css/bootstrap-datetimepicker.css",
+                "~/Content/css/bootstrap-datetimepicker.min.css",
                 "~/Content/css/bootstrap.min.css",
                 "~/Content/css/fonts.css",
                 "~/Content/css/style.css",
+                "~/Content/css/animate.css",
                 "~/Content/css/media.css"));
         }
     }

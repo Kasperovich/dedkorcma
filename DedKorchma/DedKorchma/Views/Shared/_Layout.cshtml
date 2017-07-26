@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дзедава Карчма</title>
+    <title>@ViewBag.Title</title>
     
     @*<link href="https://fonts.googleapis.com/css?family=Cuprum|Lobster|Ubuntu" rel="stylesheet">*@ 
     <link href="https://fonts.googleapis.com/css?family=Cuprum|Lobster|Marck+Script|Ubuntu" rel="stylesheet"> 
@@ -33,7 +33,7 @@
                         <li>@Html.ActionLink("ГЛАВНАЯ", "Index", "Home")</li>
                         <li>@Html.ActionLink("МЕНЮ", "Index", "Home")</li>
                         <li>@Html.ActionLink("КОНТАКТЫ", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("НВОСТИ", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("НОВОСТИ", "Index", "News")</li>
                         <li>@Html.ActionLink("СТАТЬИ", "Contact", "Home")</li>
                     </ul>
                     @*@Html.Partial("_LoginPartial")*@
@@ -50,12 +50,7 @@
                     <div class="footer-content__item__title">
                         <h3>Последние новости</h3>
                     </div>
-                    <div class="footer-content__item__text">
-                        <p>
-                            Сюда можно подгружать последние новости, хз как это будет реализовано, но все возможно.
-                            Славен явно знает.
-                        </p>
-                    </div>
+                  @Html.Action("GetLastNewsPartial","News")
                 </div>
                 <div class="footer-content__item col-xs-12 col-md-4">
                     <div class="footer-content__item__title">
@@ -63,9 +58,9 @@
                     </div>
                     <div class="footer-content__item__text">
                         <ul>
-                            <li>+375 29 180-80-08 (кафе)</li>
-                            <li>+375 44 500-00-55 (гостиница и баня)</li>
-                            <li>+375 29 133-37-33</li>
+                            <li><a href="tel:+375 29 180-80-08">+375 29 180-80-08</a> (кафе)</li>
+                            <li><a href="tel:+375 44 500-00-55">+375 44 500-00-55</a> (гостиница и баня)</li>
+                            <li><a href="tel:+375 29 133-37-33">+375 29 133-37-33</a></li>
                             <li>Время работы: c 12:00 до 00:00 пн-вс</li>
                         </ul>
                     </div>

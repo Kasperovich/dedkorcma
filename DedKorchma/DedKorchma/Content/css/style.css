@@ -164,5 +164,157 @@
     color: #1b1a1a;
     font-family: 'Cuprum';
     margin-top: 100px;
-    height: 70vh;
+    margin-bottom: 200px;
 }
+
+#news{
+	height: 70px;
+	overflow: hidden;
+}
+#news li{
+	height: 70px;
+}
+.news__title a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.news__title :hover {
+    color: #7f7f7f;
+    text-decoration: underline;
+}
+
+.news__date {
+    font-size: 13px;
+    color: darkgrey;
+}
+
+.headimage-block { position: relative; }
+
+.headimage-block .overlay {
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+width: 100%;
+height: 100%;
+position: absolute;
+-webkit-transition: .3s ease;
+-o-transition: .3s ease;
+transition: .3s ease;
+}
+
+.headimage-block { position: relative; }
+
+.headimage-block .overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    transition: .3s ease;
+}
+
+
+.headimage-block .overlay.black { background-color: rgba(58, 58, 58, 0); }
+
+.headimage-block .overlay.black:hover { background-color: rgba(58, 58, 58, 0.91); }
+
+
+.headimage-block .change-image {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    display: none;
+}
+
+.headimage-block  .overlay.black:hover .change-image {
+    display: block;
+    font-weight: bold;
+}
+
+.headimage-block .change-image:after { display: block; }
+
+.float-right {
+    float: right;
+}
+
+.news__item__date {
+    color: #7f7f7f;
+    font-size: 14px;
+}
+.news__item__shortdescription {
+    height: 70px;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.news__item__title a {
+    color: black;
+}
+.news__item__img {
+    -ms-background-size: cover;
+    background-size: cover;
+    margin-top: 22px;
+    height: 178px;
+    -ms-background-position: 50%;
+    background-position: 50%;
+    position: relative;
+}
+.news__item__delete-block {
+    background-color: #FF7373;
+    height: 178px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    color: white;
+    text-align: center;
+    display: none;
+}
+.news__item__delete-block__content {
+    margin-top: 60px;
+}
+.news__item__delete-block__text {
+    font-size: 25px;
+
+}
+.news__item__delete-block__button {
+    cursor: pointer;
+}
+.delete-block__button__Yes:hover {
+    text-decoration: underline;
+}
+.delete-block__button__No:hover {
+    text-decoration: underline;
+}
+.news__item__links {
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+.news__item__links__delete-news {
+    color: 
+}
+.news__item__links__delete-news:hover {
+    text-decoration: underline;
+}
+.news__item__seo__attr {
+    font-size: 12px;
+    color: brown;
+}
+.news__item__body {
+    text-align: justify;
+    font-size: 14px;
+}
+.news__item__seo {
+    padding: 10px;
+    background-color: #f5f5f5;
+    margin-top: -10px;
+}
+

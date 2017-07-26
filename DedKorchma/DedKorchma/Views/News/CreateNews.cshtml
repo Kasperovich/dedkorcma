@@ -1,0 +1,149 @@
+﻿@model DedKorchma.Models.ViewModels.NewsViewModel.CreateNewsViewModel
+
+@{
+    ViewBag.Title = "Создать";
+}
+<div class="container form-account">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Создать новость</h2>
+            <div>
+                @Html.ActionLink("Вернутся к новостям", "Index")
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-10 float-right">
+                                <div class="headimage-block">
+                                    <img class="headPhoto img-responsive" src="" alt="" style="display: none;" />
+                                    <div class="overlay black">
+                                        <span class="change-image">изменить картинку</span>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="dropzone col-md-10 float-right" id="newstHeadImageDropZone"> </div>
+     
+                            @Html.HiddenFor(s => s.HeadImage)
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <br/>
+                    <hr/>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.IsDeleted)
+                                @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.ShortDescription, new  { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Body, new  { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.H1, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.H1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.H1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UrlPath, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UrlPath, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UrlPath, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Description, new  { @class = "form-control" } )
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Опубликовать" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section css{
+    <link href="~/Content/css/dropzone.css" rel="stylesheet" />
+    <link href="~/Content/css/basic.css" rel="stylesheet" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/dropzone.js"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace('Body');
+
+        Dropzone.options.newstHeadImageDropZone = {
+            url: "/news/SaveNewsPhoto",
+            addRemoveLinks: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            clickable: true,
+            maxFiles: 1,
+            uploadMultiple: false,
+            dictDefaultMessage: "Что бы добавить заглавную картинку нажмите сюда либо перетяните картинку в эту область",
+            success: function (file, response) {
+                $(".headPhoto").attr("src", response.url);
+                $("#HeadImage").val(response.fileName);
+                this.removeAllFiles(true);
+                $(".headPhoto").slideDown(200);
+                $("#postHeadImageDropZone").slideUp(200);
+            }
+        }
+        $(".headimage-block .overlay.black").click(function () {
+            $(".headPhoto").slideUp(200);
+            $("#postHeadImageDropZone").slideDown(200);
+        });
+    </script>
+}
