@@ -12,14 +12,13 @@ namespace DedKorchma.BL.Service
 {
     public static class NewsService
     {
-        public static IList<News> GetAll()
+        public static List<News> GetAll()
         {
             var pathNewsPhoto = ConfigurationManager.AppSettings["pathNewsPhoto"];
             var pathDefaultPhoto = ConfigurationManager.AppSettings["pathDefaultPhoto"];
             INewsRepository newsRepo = new NewsRepository();
-            var allNews=  newsRepo.GetAll()
-                .OrderByDescending(n => n.DateCreated)
-                .ToList();
+            var allNews=  newsRepo.GetAll().ToList();
+
             foreach (var item in allNews)
             {
                 if (item.HeadImage!="")
@@ -29,14 +28,31 @@ namespace DedKorchma.BL.Service
                 else
                 {
                     item.HeadImage = pathDefaultPhoto;
-                }
-                
-  
+                }   
             }
             return allNews;
         }
+        public static List<News> GetAll(PaginationParameters pagination,bool allOrActivated)
+        {
+            var pathNewsPhoto = ConfigurationManager.AppSettings["pathNewsPhoto"];
+            var pathDefaultPhoto = ConfigurationManager.AppSettings["pathDefaultPhoto"];
+            INewsRepository newsRepo = new NewsRepository();
+            var allNews =(allOrActivated)? newsRepo.GetAll(pagination).ToList(): newsRepo.GetAllActivated(pagination).ToList();
 
-        public static IList<News> GetLastNews()
+            foreach (var item in allNews)
+            {
+                if (item.HeadImage != "")
+                {
+                    item.HeadImage = pathNewsPhoto + item.HeadImage;
+                }
+                else
+                {
+                    item.HeadImage = pathDefaultPhoto;
+                }
+            }
+            return allNews;
+        }
+        public static List<News> GetLastNews()
         {
             INewsRepository newsRepo = new NewsRepository();
             var lastNews = new List<News>();

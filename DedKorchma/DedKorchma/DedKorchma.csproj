@@ -225,6 +225,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BL\Infrastructure\NotFoundException.cs" />
+    <Compile Include="BL\PaginationParameters.cs" />
     <Compile Include="BL\Service\NewsService.cs" />
     <Compile Include="BL\Service\UserSevice.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Migrations\201707091718532_InitialCreate.cs" />
     <Compile Include="Migrations\201707091718532_InitialCreate.Designer.cs">
       <DependentUpon>201707091718532_InitialCreate.cs</DependentUpon>
@@ -272,6 +274,8 @@
     <Compile Include="Models\ViewModels\Account\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AdminViewModel\EditUserViewModel.cs" />
     <Compile Include="Models\ViewModels\AdminViewModel\UserViewModel.cs" />
+    <Compile Include="Models\ViewModels\Common\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Common\PaginationViewModel.cs" />
     <Compile Include="Models\ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\CreateNewsViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\DetailsNewsViewModel.cs" />

@@ -290,6 +290,7 @@ transition: .3s ease;
 }
 .delete-block__button__Yes:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 .delete-block__button__No:hover {
     text-decoration: underline;

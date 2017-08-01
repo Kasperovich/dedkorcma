@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DedKorchma.Models.ViewModels.NewsViewModel.NewsViewModel>
+﻿@using DedKorchma.Helpers
+@model DedKorchma.Models.ViewModels.Common.IndexViewModel
 
 @{
     ViewBag.Title = "Новости";
@@ -15,47 +16,49 @@
                     </p>
                 }
                 <hr />
-                    @foreach (var item in Model)
-                    {
-                        <div class="news__item">
-                            <div class="news__item__img col-md-3" style="background-image: url(@Url.Content(item.HeadImage))">
-                                <div class="news__item__delete-block">
-                                    <div class="news__item__delete-block__content">
-                                        <div class="news__item__delete-block__text">
-                                            <span>Вы уверены ?</span>
-                                        </div>
-                                        <div class="news__item__delete-block__button">
-                                            @Html.HiddenFor(modelItem=>item.Id)
-                                            <span class="delete-block__button__Yes">Да </span> |<span class="delete-block__button__No"> Отмена</span>
-                                        </div>
+                @foreach (var item in Model.News)
+                {
+                    <div class="news__item">
+                        <div class="news__item__img col-md-3" style="background-image: url(@Url.Content(item.HeadImage))">
+                            <div class="news__item__delete-block">
+                                <div class="news__item__delete-block__content">
+                                    <div class="news__item__delete-block__text">
+                                        <span>Вы уверены ?</span>
                                     </div>
-                                </div>   
+                                    
+                                    <div class="news__item__delete-block__button">
+                                        @Html.HiddenFor(modelItem => item.Id)
+                                        <span class="delete-block__button__Yes">Да </span> |<span class="delete-block__button__No"> Отмена</span>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="col-md-9">
+                            <div class="news__item__title">
+                                <a href="#"> <h3> @Html.DisplayFor(modelItem => item.Name)</h3></a>
                             </div>
-                            <div class="col-md-9">
-                                <div class="news__item__title">
-                                    <a href="#"> <h3> @Html.DisplayFor(modelItem => item.Name)</h3></a>
-                                </div>
-                                <div class="news__item__date ne">
-                                    @Html.DisplayFor(modelItem => item.DateCreated)
-                                </div>
-                                <div class="news__item__shortdescription">
-                                    @Html.DisplayFor(modelItem => item.ShortDescription)
-                                </div>
-                                <div class="news__item__links">
-                                    @Html.ActionLink("Перейти к новости", "Details", new { url= item.UrlPath})
-                                    @if (Request.IsAuthenticated)
-                                    {
-                                        <span>|</span>
-                                        @Html.ActionLink("Редактировать", "EditNews", new { id = item.Id })
-                                       <span>|</span>
-                                        <span class="news__item__links__delete-news">Удалить</span>
-                                        }
-
-                                </div>
-                                <hr/>
+                            <div class="news__item__date ne">
+                                @Html.DisplayFor(modelItem => item.DateCreated)
+                            </div>
+                            <div class="news__item__shortdescription">
+                                @Html.DisplayFor(modelItem => item.ShortDescription)
+                            </div>
+                            <div class="news__item__links">
+                                @Html.ActionLink("Перейти к новости", "DetailsNews", new { url= item.UrlPath})
                                 @if (Request.IsAuthenticated)
                                 {
+                                    <span>|</span>
+                                    @Html.ActionLink("Редактировать", "EditNews", new { id = item.Id })
+                                    <span>|</span>
+                                    <span class="news__item__links__delete-news">Удалить</span>
+                                }
+
+                            </div>
+                            <hr/>
+                            @if (Request.IsAuthenticated)
+                            {
                                 <div class="news__item__seo">
+                                    <span class="news__item__seo__attr">Активация :@item.IsDeleted</span><br />
                                     <span class="news__item__seo__attr">SEO Title (количество символов: @item.Title.Length):</span>
                                     <div class="news__item__title">
                                         @Html.DisplayFor(modelItem => item.Title)
@@ -69,11 +72,16 @@
                                         @Html.DisplayFor(modelItem => item.Body)
                                     </div>
                                 </div>
-                                }
-                            </div>
-
+                            }
                         </div>
-                    }
+
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                @Html.Pagination(Model.Pagination, x => Url.Action("Index", new { page = x }))
             </div>
         </div>
     </div>
@@ -100,8 +108,17 @@
                 function(e) {
                     $(this).parents().find(".news__item__delete-block").slideUp();
                 });
-        $('body').on("click", "delete-block__button__Yes",function(e) {
-            ;
+        $('body').on("click", ".delete-block__button__Yes",function(e) {
+            $(this).parent().parent().parent().parent().parent().css("display", "none");
+            var newsId = $(this).parent().children("Id").val();
+
+            $.ajax({
+                beforeSend: function() {
+                },
+                type: 'POST',
+                data: { newsId: newsId },
+                url: '/News/DeleteNews'
+        });
         });
     </script>
 }

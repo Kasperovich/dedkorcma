@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
+using DedKorchma.BL;
 using DedKorchma.DAL.Interface;
 using DedKorchma.Migrations;
 using DedKorchma.Models.Entities;
@@ -22,7 +23,45 @@ namespace DedKorchma.DAL.Repository
 
         internal IList<News> GetAll(ContextDb context)
         {
-            return context.News.ToList();
+            return context.News.OrderByDescending(n => n.DateCreated).ToList();
+        }
+
+        public IList<News> GetAll(PaginationParameters pagination)
+        {
+            using (var context = new ContextDb())
+            {
+                return GetAll(context,pagination);
+            }
+        }
+
+        internal IList<News> GetAll(ContextDb context,PaginationParameters pagination)
+        {
+            var news = context.News
+                .OrderByDescending(n => n.DateCreated)
+                .Skip((pagination.Page - 1)*pagination.PageSize)
+                .Take(pagination.PageSize).ToList();
+            pagination.TotalCount = context.News.Count();
+            return news;
+        }
+
+        public IList<News> GetAllActivated(PaginationParameters pagination)
+        {
+            using (var context=new ContextDb())
+            {
+                return GetAllActivated(context, pagination);
+            }
+        }
+
+        internal IList<News> GetAllActivated(ContextDb context, PaginationParameters pagination)
+        {
+            var news = context.News
+                .OrderByDescending(n => n.DateCreated)
+                    .Where(n => n.IsDeleted)
+                .Skip((pagination.Page - 1)*pagination.PageSize)
+                .Take(pagination.PageSize)
+            .ToList();
+            pagination.TotalCount = context.News.Count(n=>n.IsDeleted);
+            return news;
         }
 
         public bool Create(News news)

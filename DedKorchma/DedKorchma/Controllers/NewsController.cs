@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DedKorchma.BL;
 using DedKorchma.BL.Service;
 using DedKorchma.Models.Entities;
+using DedKorchma.Models.ViewModels.Common;
 using DedKorchma.Models.ViewModels.NewsViewModel;
 
 namespace DedKorchma.Controllers
@@ -13,27 +15,20 @@ namespace DedKorchma.Controllers
     public class NewsController : Controller
     {
         // GET: News
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber=1)
         {
-            var news = NewsService.GetAll()
-                .Select(n => new NewsViewModel(n))
-                .ToList();
-            if (Request.IsAuthenticated)
-            {
-                return View(news);
-            }
-            else
-            {
-                var activationNews =new List<NewsViewModel>();
-                foreach (var item in news)
+            var pagination = new PaginationParameters { Page = pageNumber };
+                var model = new IndexViewModel(NewsService.GetAll(pagination,Request.IsAuthenticated))
                 {
-                    if (item.IsDeleted)
+                    Pagination = new PaginationViewModel
                     {
-                        activationNews.Add(item);
+                        PageNumber = pagination.Page,
+                        PageSize = pagination.PageSize,
+                        TotalItems = pagination.TotalCount,
+                        Url = "/news"
                     }
-                }
-                return View(activationNews);
-            }
+                };
+                return View(model);
         }
 
         public ActionResult GetLastNewsPartial()
@@ -87,12 +82,12 @@ namespace DedKorchma.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult DeleteNews(int id)
+        [HttpPost]
+        public ActionResult DeleteNews(string newsId)
         {
             try
             {
-                if (NewsService.Delete(id))
+                if (NewsService.Delete(Convert.ToInt32(newsId)))
                 {
                     return RedirectToAction("Index", "News");
                 }
