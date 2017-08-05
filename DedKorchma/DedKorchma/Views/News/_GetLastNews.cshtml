@@ -10,7 +10,7 @@
                 </div>
                 
                 <div class="news__title">
-                <a href="#">
+                <a href="@Url.Action("DetailsNews", new { url = item.UrlPath })">
                     @Html.DisplayFor(modelItem => item.Name)
                 </a>
                </div>

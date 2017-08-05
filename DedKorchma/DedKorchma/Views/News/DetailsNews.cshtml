@@ -9,7 +9,7 @@
         <div class="Details-news__Name">@Model.Name</div>
         <div class="Details-news__Datetime">@Model.DateCreated</div>
         <hr/>
-        <div class="Details-news__Body">@Model.Body</div>
+        <div class="Details-news__Body">@Html.Raw(Model.Body)</div>
     </div>
     <hr/>
     <p>

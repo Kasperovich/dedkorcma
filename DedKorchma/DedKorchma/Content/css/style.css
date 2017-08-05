@@ -164,7 +164,8 @@
     color: #1b1a1a;
     font-family: 'Cuprum';
     margin-top: 100px;
-    margin-bottom: 200px;
+  min-height: 100vh;
+  margin-bottom:4s0px;
 }
 
 #news{
@@ -300,10 +301,12 @@ transition: .3s ease;
     margin-bottom: -10px;
 }
 .news__item__links__delete-news {
-    color: blue;
+    color: #4C8ABB;
+    cursor:pointer;
 }
 .news__item__links__delete-news:hover {
     text-decoration: underline;
+    color:#2352A4;
 }
 .news__item__seo__attr {
     font-size: 12px;

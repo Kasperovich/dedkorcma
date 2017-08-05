@@ -41,7 +41,7 @@ namespace DedKorchma.BL.Service
 
             foreach (var item in allNews)
             {
-                if (item.HeadImage != "")
+                if (item.HeadImage != ""&&item.HeadImage!=null)
                 {
                     item.HeadImage = pathNewsPhoto + item.HeadImage;
                 }

@@ -147,7 +147,7 @@ namespace DedKorchma.Controllers
                     file.SaveAs(filename);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 isSavedSuccessfully = false;
             }

@@ -12,6 +12,7 @@ namespace DedKorchma.Controllers
         ContextDb db=new ContextDb();
         public ActionResult Index()
         {
+
             return View();
         }
 
