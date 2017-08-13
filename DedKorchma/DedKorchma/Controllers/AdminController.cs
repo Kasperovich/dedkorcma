@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DedKorchma.Controllers
 {
-    [Authorize(Roles = "TechAdmin,Admin")]
+   [Authorize(Roles = "TechAdmin,Admin")]
     public class AdminController : Controller
     {
         private ApplicationUserManager _userManager;

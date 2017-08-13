@@ -1,0 +1,56 @@
+﻿@model DedKorchma.Models.ViewModels.GalleryViewModel.GalleryViewModel
+
+@{
+    ViewBag.Title = "Галерея";
+}
+
+<div class="container">
+    <div class="gallery form-account">
+            <h2>Галлерея</h2>
+            @Html.ActionLink("Создать альбом", "Createalbum")<hr />
+            <div class="albums">
+                <h3>Альбомы</h3>
+                <div class="row">
+                    @if (Model.Albums != null)
+                    {
+                        foreach (var album in Model.Albums)
+                        {
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <a href="#">
+                                    <div class="album-item" style="background-image: url(@Url.Content(@album.HeadImage))">
+                                        <div class="album-item__heder"></div>
+                                        <div class="album-item__footer">
+                                            <div class="album-item__name">
+                                                @album.NameOfAlbum
+                                            </div>
+                                            <div class="album-item__info">
+                                                <div class="album-item__countPhoto">
+                                                    @album.Photos.Count фото
+                                                </div>
+                                                <div class="album-item__dateCreated">
+                                                    @album.DateCreated
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        <hr/>
+            <div class="photos">
+                <h3>Фотографии</h3>
+                <div class="row">
+                    @if (Model.Photos != null)
+                    {
+                        foreach (var album in Model.Photos)
+                        {
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+</div>

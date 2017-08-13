@@ -26,7 +26,6 @@
                                         <div class="news__item__delete-block__text">
                                             <span>Вы уверены ?</span>
                                         </div>
-
                                         <div class="news__item__delete-block__button">
                                             @Html.HiddenFor(modelItem => item.Id)
                                             <span class="delete-block__button__Yes">Да </span> |<span class="delete-block__button__No"> Отмена</span>
@@ -111,8 +110,8 @@
                 });
         $('body').on("click", ".delete-block__button__Yes",function(e) {
             $(this).parent().parent().parent().parent().parent().css("display", "none");
-            var newsId = $(this).parent().children("Id").val();
-
+            var newsId = $(this).parent().find("#item_Id").val();
+            console.log(newsId);
             $.ajax({
                 beforeSend: function() {
                 },

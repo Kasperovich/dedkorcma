@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ImageProcessor, Version=2.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.5.4\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -226,15 +230,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BL\Infrastructure\NotFoundException.cs" />
     <Compile Include="BL\PaginationParameters.cs" />
+    <Compile Include="BL\Service\GalleryService.cs" />
     <Compile Include="BL\Service\NewsService.cs" />
     <Compile Include="BL\Service\UserSevice.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="DAL\Interface\IGalleryRepository.cs" />
     <Compile Include="DAL\Interface\INewsRepository.cs" />
     <Compile Include="DAL\Interface\IUserRepository.cs" />
+    <Compile Include="DAL\Repository\GalleryRepository.cs" />
     <Compile Include="DAL\Repository\NewsRepository.cs" />
     <Compile Include="DAL\Repository\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,6 +273,14 @@
     <Compile Include="Migrations\201708030606024_new.Designer.cs">
       <DependentUpon>201708030606024_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708051353478_album.cs" />
+    <Compile Include="Migrations\201708051353478_album.Designer.cs">
+      <DependentUpon>201708051353478_album.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708060820330_AlbumAddHeadImage.cs" />
+    <Compile Include="Migrations\201708060820330_AlbumAddHeadImage.Designer.cs">
+      <DependentUpon>201708060820330_AlbumAddHeadImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationRoleManager .cs" />
     <Compile Include="Models\Entities\Album.cs" />
@@ -280,6 +296,9 @@
     <Compile Include="Models\ViewModels\AdminViewModel\UserViewModel.cs" />
     <Compile Include="Models\ViewModels\Common\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\Common\PaginationViewModel.cs" />
+    <Compile Include="Models\ViewModels\GalleryViewModel\CreateAlbumViewModel.cs" />
+    <Compile Include="Models\ViewModels\GalleryViewModel\DetailsAlbumViewModel.cs" />
+    <Compile Include="Models\ViewModels\GalleryViewModel\GalleryViewModel.cs" />
     <Compile Include="Models\ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\CreateNewsViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\DetailsNewsViewModel.cs" />
@@ -624,7 +643,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -667,10 +688,15 @@
     <Content Include="Views\News\CreateNews.cshtml" />
     <Content Include="Views\News\EditNews.cshtml" />
     <Content Include="Views\News\DetailsNews.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\CreateAlbum.cshtml" />
+    <Content Include="Views\Gallery\DetailsAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\GalleryPhoto\" />
     <Folder Include="Content\Images\NewsPhoto\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\Errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -697,6 +723,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708030606024_new.resx">
       <DependentUpon>201708030606024_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708051353478_album.resx">
+      <DependentUpon>201708051353478_album.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708060820330_AlbumAddHeadImage.resx">
+      <DependentUpon>201708060820330_AlbumAddHeadImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

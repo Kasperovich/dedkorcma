@@ -38,6 +38,16 @@ namespace DedKorchma
                 defaults: new { controller = "News", action = "Index", pageNumber = UrlParameter.Optional }
                 );
             routes.MapRoute(
+                name: "Gallery",
+                url: "gallery",
+                defaults: new { controller = "Gallery", action = "Index", pageNumber = UrlParameter.Optional }
+                );
+           routes.MapRoute(
+                name: "album/Create",
+                url: "album/create",
+                defaults: new { controller = "Gallery", action = "Createalbum", pageNumber = UrlParameter.Optional }
+                );
+            routes.MapRoute(
                    name: "News/Create",
                    url: "news/create",
                    defaults: new { controller = "News", action = "CreateNews" }

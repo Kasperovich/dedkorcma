@@ -97,7 +97,7 @@ namespace DedKorchma.BL.Service
             {
                 throw new NotFoundException("Новость не найдена", "");
             }
-            if (news.HeadImage != "")
+            if (news.HeadImage != "" && news.HeadImage != null)
             {
                 news.HeadImage = pathNewsPhoto + news.HeadImage;
             }

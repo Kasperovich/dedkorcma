@@ -135,3 +135,6 @@ D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.csproj.Generate
 D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.dll
 D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.pdb
 D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations._new.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.album.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.AlbumAddHeadImage.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\bin\ImageProcessor.dll

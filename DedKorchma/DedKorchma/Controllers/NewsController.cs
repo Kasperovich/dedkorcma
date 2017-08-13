@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DedKorchma.BL;
 using DedKorchma.BL.Service;
-using DedKorchma.Models.Entities;
+using DedKorchma.Controllers;
 using DedKorchma.Models.ViewModels.Common;
 using DedKorchma.Models.ViewModels.NewsViewModel;
+using System.Configuration;
 
 namespace DedKorchma.Controllers
 {
@@ -38,13 +37,13 @@ namespace DedKorchma.Controllers
                 .ToList();
             return PartialView("_GetLastNews", news);
         }
-
+        [Authorize(Roles = "TechAdmin,Admin")]
         [HttpGet]
         public ActionResult CreateNews()
         {
             return View();
         }
-
+        [Authorize(Roles = "TechAdmin,Admin")]
         [HttpPost]
         public ActionResult CreateNews(CreateNewsViewModel news)
         {
@@ -56,7 +55,7 @@ namespace DedKorchma.Controllers
             }
             return View();
         }
-
+        [Authorize(Roles = "TechAdmin,Admin")]
         [HttpGet]
         public ActionResult EditNews(int id)
         {
@@ -70,7 +69,7 @@ namespace DedKorchma.Controllers
                 return Content(ex.Message);
             }
         }
-
+        [Authorize(Roles = "TechAdmin,Admin")]
         [HttpPost]
         public ActionResult EditNews(EditNewsViewModel news)
         {
@@ -81,14 +80,20 @@ namespace DedKorchma.Controllers
             }
             return View();
         }
-
+        [Authorize(Roles = "TechAdmin,Admin")]
         [HttpPost]
         public ActionResult DeleteNews(string newsId)
         {
             try
             {
+                var pathDefaultPhoto = ConfigurationManager.AppSettings["pathDefaultPhoto"];
+                var news = NewsService.GetbyId(Convert.ToInt32(newsId));
                 if (NewsService.Delete(Convert.ToInt32(newsId)))
                 {
+                    if(news.HeadImage!=pathDefaultPhoto)
+                    {
+                        DeletePhotoFromServer(news.HeadImage);
+                    }
                     return RedirectToAction("Index", "News");
                 }
                 return View();
@@ -99,7 +104,6 @@ namespace DedKorchma.Controllers
                 return Content(ex.Message);
             }
         }
-
         [HttpGet]
         public ActionResult DetailsNews(string url)
         {
@@ -161,7 +165,10 @@ namespace DedKorchma.Controllers
                 })
                 : Json(new { uploaded = 0, Message = "Ошибка загрузки файла" });
         }
-
-
+        private void DeletePhotoFromServer(string path)
+        {
+            var location = Server.MapPath($"~{path}");
+            System.IO.File.Delete(location);
+        }
     }
 }

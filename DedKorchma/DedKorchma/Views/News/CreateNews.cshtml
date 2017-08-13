@@ -1,7 +1,7 @@
 ﻿@model DedKorchma.Models.ViewModels.NewsViewModel.CreateNewsViewModel
 
 @{
-    ViewBag.Title = "Создать";
+    ViewBag.Title = "Создать новость";
 }
 <div class="container form-account">
     <div class="row">
@@ -28,10 +28,10 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="dropzone col-md-10 float-right" id="newstHeadImageDropZone"> </div>
+                            <div class="dropzone col-md-10 float-right" id="newsHeadImageDropZone"> </div>
      
                             @Html.HiddenFor(s => s.HeadImage)
-                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.HeadImage, "", new { @class = "text-danger" })
 
                         </div>
                     </div>
@@ -124,7 +124,7 @@
     <script>
         CKEDITOR.replace('Body');
 
-        Dropzone.options.newstHeadImageDropZone = {
+        Dropzone.options.newsHeadImageDropZone = {
             url: "/news/SaveNewsPhoto",
             addRemoveLinks: true,
             autoProcessQueue: true,
@@ -138,12 +138,12 @@
                 $("#HeadImage").val(response.fileName);
                 this.removeAllFiles(true);
                 $(".headPhoto").slideDown(200);
-                $("#postHeadImageDropZone").slideUp(200);
+                $("#newsHeadImageDropZone").slideUp(200);
             }
         }
         $(".headimage-block .overlay.black").click(function () {
             $(".headPhoto").slideUp(200);
-            $("#postHeadImageDropZone").slideDown(200);
+            $("#newsHeadImageDropZone").slideDown(200);
         });
     </script>
 }
