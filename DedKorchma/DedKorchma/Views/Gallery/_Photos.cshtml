@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DedKorchma.Models.Entities.AlbumPhoto>
+
+        @foreach (var photo in Model)
+        {
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="album-details__photo" style="background-image: url(@Url.Content(photo.Path))"></div>
+            </div>
+        }

@@ -339,7 +339,15 @@ transition: .3s ease;
 .details-news__Datetime {
     color: #7f7f7f;
 }
-
+.album-details__photo{
+    height: 200px;
+    background-size: cover;
+    background-position: 50%;
+    position: relative;
+    transition: all .5s;
+    display: block;
+    margin-bottom:30px;
+}
 .album-item {   
     height: 200px;
     background-size: cover;

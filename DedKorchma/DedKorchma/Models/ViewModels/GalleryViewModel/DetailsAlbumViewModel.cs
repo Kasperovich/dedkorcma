@@ -8,6 +8,7 @@ namespace DedKorchma.Models.ViewModels.GalleryViewModel
 {
     public class DetailsAlbumViewModel
     {
+        public int AlbumId { get; set; }
         public string NameOfAlbum { get; set; }
         public string UrlPath { get; set; }
         public string Title { get; set; }
@@ -18,6 +19,7 @@ namespace DedKorchma.Models.ViewModels.GalleryViewModel
 
         public DetailsAlbumViewModel(Album album)
         {
+            AlbumId = album.Id;
             NameOfAlbum = album.NameOfAlbum;
             UrlPath = album.UrlPath;
             Title = album.Title;

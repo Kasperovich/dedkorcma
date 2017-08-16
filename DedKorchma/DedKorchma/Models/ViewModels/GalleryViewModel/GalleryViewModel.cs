@@ -9,18 +9,20 @@ namespace DedKorchma.Models.ViewModels.GalleryViewModel
     public class GalleryViewModel
     {
        public List<Album> Albums { get; set; }
-       public List<Photo> Photos { get; set; }
+       public List<AlbumPhoto> Photos { get; set; }
 
-        public GalleryViewModel(List<Album> album)
+        public GalleryViewModel(List<Album> albums)
         {
-            Albums = album;
-            foreach(var item in album)
+            Albums = albums;
+            var photos = new List<AlbumPhoto>();
+            foreach (var item in albums)
             {
-                foreach(var photo in item.Photos)
+                foreach (var albumPhotos in item.Photos)
                 {
-                    Photos.Add(photo.Photo);
+                    photos.Add(albumPhotos);
                 }
             }
+            Photos = photos;
         }
 
         public GalleryViewModel() { }

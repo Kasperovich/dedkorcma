@@ -35,15 +35,15 @@ namespace DedKorchma.DAL.Repository
         {
             return contet.Albums.Include(a => a.Photos).SingleOrDefault(a => a.Id == id);
         }
-        public Album GetByName(string path)
+        public Album GetByURL(string url)
         {
             using(var context=new ContextDb())
             {
-                return GetByName(context, path);
+                return GetByURL(context, url);
             }
         }
 
-        internal Album GetByName(ContextDb context,string url)
+        internal Album GetByURL(ContextDb context,string url)
         {
             return context.Albums.Include(a => a.Photos).SingleOrDefault(a => a.UrlPath == url);
         }
@@ -57,6 +57,48 @@ namespace DedKorchma.DAL.Repository
         internal bool CreateAlbum(Album album,ContextDb context)
         {
             context.Albums.Add(album);
+            return context.SaveChanges() == 1;
+        }
+
+        public bool SavePhotoInAlbum(AlbumPhoto photo)
+        {
+            using(var context=new ContextDb())
+            {
+                return SavePhotoInAlbum(context, photo);
+            }
+        }
+
+        internal bool SavePhotoInAlbum(ContextDb context,AlbumPhoto photo)
+        {
+            context.AlbumPhotos.Add(photo);
+            return context.SaveChanges() == 1;
+        }
+
+        public List<AlbumPhoto> GetPhotoInAlbum(int albumId)
+        {
+            using(var context=new ContextDb())
+            {
+                return GetPhotoInAlbum(context, albumId);
+            }
+        }
+
+        internal List<AlbumPhoto> GetPhotoInAlbum(ContextDb context,int albumId)
+        {
+            return context.AlbumPhotos.Include(a=>a.Album).Where(a=>a.AlbumId==albumId).ToList();
+        }
+
+        public bool EditAlbum(Album album)
+        {
+            using(var context=new ContextDb())
+            {
+                return EditAlbum(context,album);
+            }
+        }
+
+        internal bool EditAlbum(ContextDb context,Album album)
+        {
+            DbEntityEntry<Album> entry = context.Entry(album);
+            entry.State = EntityState.Modified;
             return context.SaveChanges() == 1;
         }
     }

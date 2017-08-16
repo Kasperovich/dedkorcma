@@ -1,74 +1,69 @@
-﻿@model DedKorchma.Models.Entities.Album
+﻿@model DedKorchma.Models.ViewModels.GalleryViewModel.DetailsAlbumViewModel
 
 @{
-    ViewBag.Title = "DetailsAlbum";
+    ViewBag.Title = Model.Title;
 }
+<div class="container">
+    @Html.HiddenFor(s => s.AlbumId)
+    <div class="form-account">
+        <div class="album-details__name">
+            <h2>@Model.NameOfAlbum</h2>
+        </div>
+        <p>
+            @Html.ActionLink("Вернутся в галерею", "Index") | @if (Request.IsAuthenticated) { @Html.ActionLink("Редактировать","EditAlbum",new {albumId=Model.AlbumId})}
+        </p>
+        @if (Request.IsAuthenticated)
+        {
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="galleryDropZone" class="dropzone">
 
-<h2>DetailsAlbum</h2>
-
-<div>
-    <h4>Album</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NameOfAlbum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NameOfAlbum)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HeadImage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HeadImage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UrlPath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UrlPath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Keywords)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Keywords)
-        </dd>
-
-    </dl>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr />
+        <div class="album-details__photos">
+            <div class="row">  
+                    @Html.Action("PhotosPartial", "gallery", new { albumId = Model.AlbumId })
+                <div id="photos">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        @section css{
+            <link href="~/Content/css/dropzone.css" rel="stylesheet" />
+        }
+
+        @section scripts{
+            <script src="~/Scripts/dropzone.js"></script>
+            <script>
+                Dropzone.options.galleryDropZone = {
+                    url: "/gallery/SaveGalleryPhoto",
+                    addRemoveLinks: true,
+                    autoProcessQueue: true,
+                    autoDiscover: false,
+                    clickable: true,
+                    maxFiles: 30,
+                    uploadMultiple: false,
+                    dictDefaultMessage: "Для того, что бы добавить фтографии в альбом нажмите сюда либо перетяните картинку в эту область",
+                    success: function (file, response) {
+                        console.log("ура");
+                        var albumId = $("#AlbumId").val();
+                        $.ajax({
+                            beforeSend: function () {
+
+                            },
+                            type: 'POST',
+                            data: { albumId: albumId, photoPath: response.fileName },
+                            url: '/gallery/AddPhoto',
+                            success: function (data) {
+                                $("#photos").prepend(data);
+                            }
+                        });
+                    }
+                }
+            </script>
+        }

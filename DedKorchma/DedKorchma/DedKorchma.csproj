@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201708060820330_AlbumAddHeadImage.Designer.cs">
       <DependentUpon>201708060820330_AlbumAddHeadImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708161429326_deletePhoto.cs" />
+    <Compile Include="Migrations\201708161429326_deletePhoto.Designer.cs">
+      <DependentUpon>201708161429326_deletePhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationRoleManager .cs" />
     <Compile Include="Models\Entities\Album.cs" />
@@ -288,7 +292,6 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\ContextDb.cs" />
     <Compile Include="Models\Entities\News.cs" />
-    <Compile Include="Models\Entities\Photo.cs" />
     <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\ViewModels\Account\AccountViewModels.cs" />
@@ -298,6 +301,7 @@
     <Compile Include="Models\ViewModels\Common\PaginationViewModel.cs" />
     <Compile Include="Models\ViewModels\GalleryViewModel\CreateAlbumViewModel.cs" />
     <Compile Include="Models\ViewModels\GalleryViewModel\DetailsAlbumViewModel.cs" />
+    <Compile Include="Models\ViewModels\GalleryViewModel\EditAlbumViewModel.cs" />
     <Compile Include="Models\ViewModels\GalleryViewModel\GalleryViewModel.cs" />
     <Compile Include="Models\ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\CreateNewsViewModel.cs" />
@@ -691,6 +695,9 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\CreateAlbum.cshtml" />
     <Content Include="Views\Gallery\DetailsAlbum.cshtml" />
+    <Content Include="Views\Gallery\_Photos.cshtml" />
+    <Content Include="Views\Gallery\_Photo.cshtml" />
+    <Content Include="Views\Gallery\EditAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -729,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708060820330_AlbumAddHeadImage.resx">
       <DependentUpon>201708060820330_AlbumAddHeadImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161429326_deletePhoto.resx">
+      <DependentUpon>201708161429326_deletePhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

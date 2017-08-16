@@ -35,14 +35,12 @@ namespace DedKorchma.Models.Entities
             modelBuilder.Entity<AlbumPhoto>().ToTable("T_AlbumPhotos");
             modelBuilder.Entity<Category>().ToTable("T_Categories");
             modelBuilder.Entity<News>().ToTable("T_News");
-            modelBuilder.Entity<Photo>().ToTable("T_Photos");
             modelBuilder.Entity<Product>().ToTable("T_Products");
         }
         public DbSet<Album> Albums { get; set; }
         public DbSet<AlbumPhoto> AlbumPhotos { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Photo> Photos { get; set; }
         public DbSet<Product> Products { get; set; }
 
     }

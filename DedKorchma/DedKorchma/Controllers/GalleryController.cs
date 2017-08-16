@@ -8,6 +8,7 @@ using DedKorchma.Models.ViewModels.GalleryViewModel;
 using System.IO;
 using System.Drawing;
 using ImageProcessor;
+using DedKorchma.Models.Entities;
 
 namespace DedKorchma.Controllers
 {
@@ -43,13 +44,62 @@ namespace DedKorchma.Controllers
         {
             try
             {
-                var album = GalleryService.GetByName(url);
+                var album = GalleryService.GetByURL(url);
                 return View(new DetailsAlbumViewModel(album));
             }
             catch(Exception ex)
             {
                 return View(ex.Message);
             }
+        }
+
+        [HttpGet]
+        public ActionResult PhotosPartial(int albumId)
+        {
+            var photos = GalleryService.GetPhtotoInAlbum(albumId);
+            return PartialView("_Photos",photos);
+        }
+
+        [HttpPost]
+        public ActionResult AddPhoto(int albumId,string photoPath)
+        {
+            var pathGalleryPhoto = System.Configuration.ConfigurationManager.AppSettings["pathGalleryPhoto"];
+            var photo = new AlbumPhoto()
+            {
+                AlbumId = albumId,
+                Path = photoPath
+            };
+            if (GalleryService.SavePhotoInAlbum(photo))
+            {
+                photo.Path = pathGalleryPhoto + photo.Path;
+                return PartialView("_Photo", photo);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Editalbum(int albumId)
+        {
+            try
+            {
+                var album = GalleryService.GetById(albumId);
+                return View(new EditAlbumViewModel(album));
+            }
+            catch(Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditAlbum(EditAlbumViewModel album)
+        {
+            if (!ModelState.IsValid) return View(album);
+            if (GalleryService.EditAlbum(album.ToEntity()))
+            {
+                return RedirectToAction("index", "gallery");
+            }
+            return View();
         }
         public ActionResult SaveGalleryPhoto()
         {
@@ -66,7 +116,7 @@ namespace DedKorchma.Controllers
                 {
                     var file = Request.Files[fileName];
                     var filename =
-                        $"teacher-photo-{DateTime.Now:yy-MM-dd-HH-mm-ss-fff}-{Guid.NewGuid()}-{file.ContentLength}{Path.GetExtension(file.FileName)}";
+                        $"gallery-photo-{DateTime.Now:yy-MM-dd-HH-mm-ss-fff}-{Guid.NewGuid()}-{file.ContentLength}{Path.GetExtension(file.FileName)}";
 
                     fName = filename;
 
@@ -95,13 +145,12 @@ namespace DedKorchma.Controllers
                 isSavedSuccessfully = false;
 
             }
-
-
             return isSavedSuccessfully
                 ? Json(new
                 {
-                    Message = "Successful",
-                    name = System.Configuration.ConfigurationManager.AppSettings["pathTeachersPhoto"] + fName
+                    uploaded = 1,
+                    fileName = fName,
+                    url = System.Configuration.ConfigurationManager.AppSettings["pathGalleryPhoto"] + fName
                 })
                 : Json(new { Message = "Error in saving file" });
         }

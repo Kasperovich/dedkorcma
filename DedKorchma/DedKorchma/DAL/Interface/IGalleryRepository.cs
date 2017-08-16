@@ -11,7 +11,11 @@ namespace DedKorchma.DAL.Interface
     {
         IList<Album> GetAll();
         Album GetById(int id);
-        Album GetByName(string url);
+        Album GetByURL(string url);
         bool CreateAlbum(Album album);
+        bool SavePhotoInAlbum(AlbumPhoto photo);
+        bool EditAlbum(Album album);
+        List<AlbumPhoto> GetPhotoInAlbum(int albumId);
+
     }
 }

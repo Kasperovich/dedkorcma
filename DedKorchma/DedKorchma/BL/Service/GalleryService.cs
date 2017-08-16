@@ -28,24 +28,73 @@ namespace DedKorchma.BL.Service
                 {
                     album.HeadImage = pathDefaultPhoto;
                 }
+                foreach(var photo in album.Photos)
+                {
+                    photo.Path = pathGellaryPhoto+photo.Path;
+                }
             }
             return albums;
         }
 
-        public static Album GetByName(string url)
+        public static Album GetById(int albumId)
         {
+            var pathGalleryPhoto = ConfigurationManager.AppSettings["pathGalleryPhoto"];
             IGalleryRepository galleryRepo = new GalleryRepository();
-            var album = galleryRepo.GetByName(url);
+            var album = galleryRepo.GetById(albumId);
             if (album == null)
             {
                 throw new NotFoundException("Альбом не найден", "");
+            }
+            foreach (var photo in album.Photos)
+            {
+                photo.Path = pathGalleryPhoto + photo.Path;
+            }
+            return album;
+        }
+
+        public static Album GetByURL(string url)
+        {
+            var pathGalleryPhoto = ConfigurationManager.AppSettings["pathGalleryPhoto"];
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            var album = galleryRepo.GetByURL(url);
+            if (album == null)
+            {
+                throw new NotFoundException("Альбом не найден", "");
+            }
+            foreach (var photo in album.Photos)
+            {
+                photo.Path = pathGalleryPhoto + photo.Path;
             }
             return album;
         }
         public static bool CreateAlbum(Album album)
         {
-            IGalleryRepository galleryrepo = new GalleryRepository();
-            return galleryrepo.CreateAlbum(album);
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            return galleryRepo.CreateAlbum(album);
+        }
+
+        public static bool SavePhotoInAlbum(AlbumPhoto photo)
+        {
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            return galleryRepo.SavePhotoInAlbum(photo);
+        }
+
+        public static List<AlbumPhoto> GetPhtotoInAlbum(int albumId)
+        {
+            var pathGellaryPhoto = ConfigurationManager.AppSettings["pathGalleryPhoto"];
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            var photos= galleryRepo.GetPhotoInAlbum(albumId);
+            foreach (var photo in photos)
+            {
+                photo.Path = pathGellaryPhoto + photo.Path;
+            }
+            return photos;
+        }
+
+        public static bool EditAlbum(Album album)
+        {
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            return galleryRepo.EditAlbum(album);
         }
     }
 }

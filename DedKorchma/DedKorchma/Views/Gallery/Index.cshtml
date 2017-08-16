@@ -15,8 +15,8 @@
                     {
                         foreach (var album in Model.Albums)
                         {
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <a href="#">
+                            <a href="@Url.Action("Detailsalbum",new { url=album.UrlPath})">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="album-item" style="background-image: url(@Url.Content(@album.HeadImage))">
                                         <div class="album-item__heder"></div>
                                         <div class="album-item__footer">
@@ -33,8 +33,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         }
                     }
                 </div>
@@ -45,9 +45,11 @@
                 <div class="row">
                     @if (Model.Photos != null)
                     {
-                        foreach (var album in Model.Photos)
+                        foreach (var photo in Model.Photos)
                         {
-
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="album-details__photo" style="background-image: url(@Url.Content(photo.Path))"></div>
+                            </div>
                         }
                     }
                 </div>

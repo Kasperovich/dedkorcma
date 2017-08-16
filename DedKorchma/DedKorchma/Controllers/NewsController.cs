@@ -69,6 +69,7 @@ namespace DedKorchma.Controllers
                 return Content(ex.Message);
             }
         }
+
         [Authorize(Roles = "TechAdmin,Admin")]
         [HttpPost]
         public ActionResult EditNews(EditNewsViewModel news)
