@@ -10,7 +10,13 @@
             <h2>@Model.NameOfAlbum</h2>
         </div>
         <p>
-            @Html.ActionLink("Вернутся в галерею", "Index") | @if (Request.IsAuthenticated) { @Html.ActionLink("Редактировать","EditAlbum",new {albumId=Model.AlbumId})}
+            @Html.ActionLink("Вернутся в галерею", "Index") 
+            @if (Request.IsAuthenticated)
+            {
+                <span>|</span>
+                 @Html.ActionLink("Редактировать","EditAlbum",new {albumId=Model.AlbumId})<span>|</span>
+                 @Html.ActionLink("Удалить","DeleteAlbum", new { albumId = Model.AlbumId })
+            }
         </p>
         @if (Request.IsAuthenticated)
         {

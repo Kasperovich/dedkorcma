@@ -15,6 +15,7 @@ namespace DedKorchma.DAL.Interface
         bool CreateAlbum(Album album);
         bool SavePhotoInAlbum(AlbumPhoto photo);
         bool EditAlbum(Album album);
+        bool DeleteAlbum(int albumId);
         List<AlbumPhoto> GetPhotoInAlbum(int albumId);
 
     }

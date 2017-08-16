@@ -101,5 +101,21 @@ namespace DedKorchma.DAL.Repository
             entry.State = EntityState.Modified;
             return context.SaveChanges() == 1;
         }
+
+        public bool DeleteAlbum(int albumId)
+        {
+            using(var context=new ContextDb())
+            {
+                return DeleteAlbum(context, albumId);
+            }
+        }
+
+        internal bool DeleteAlbum(ContextDb context,int albumId)
+        {
+            var album = GetById(context, albumId);
+            album.Photos.ToList().ForEach(p => context.AlbumPhotos.Remove(p));
+            context.Albums.Remove(album);
+            return context.SaveChanges() > 1;
+        }
     }
 }

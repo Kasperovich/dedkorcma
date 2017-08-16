@@ -61,6 +61,7 @@ namespace DedKorchma.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult AddPhoto(int albumId,string photoPath)
         {
             var pathGalleryPhoto = System.Configuration.ConfigurationManager.AppSettings["pathGalleryPhoto"];
@@ -78,6 +79,7 @@ namespace DedKorchma.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult Editalbum(int albumId)
         {
             try
@@ -92,6 +94,7 @@ namespace DedKorchma.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult EditAlbum(EditAlbumViewModel album)
         {
             if (!ModelState.IsValid) return View(album);
@@ -101,6 +104,25 @@ namespace DedKorchma.Controllers
             }
             return View();
         }
+        [HttpGet]
+        [Authorize(Roles = "TechAdmin,Admin")]
+        public ActionResult DeleteAlbum(int albumId)
+        {
+            var album = GalleryService.GetById(albumId);
+            if (album != null)
+            {
+                foreach(var photo in album.Photos)
+                {
+                    DeletePhotoFromServer(photo.Path);
+                }
+                if (GalleryService.DeleteAlbum(albumId))
+                {
+                    return RedirectToAction("index", "gallery");
+                }
+            }
+            return View();
+        }
+        [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult SaveGalleryPhoto()
         {
             var pathGalleryPhoto = System.Configuration.ConfigurationManager.AppSettings["pathGalleryPhoto"];
@@ -154,6 +176,7 @@ namespace DedKorchma.Controllers
                 })
                 : Json(new { Message = "Error in saving file" });
         }
+        [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult SaveGalleryHeadPhoto()
         {
             var pathGalleryPhoto = System.Configuration.ConfigurationManager.AppSettings["pathGalleryPhoto"];
