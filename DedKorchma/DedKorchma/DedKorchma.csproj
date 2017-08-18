@@ -312,6 +312,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\close.png" />
     <Content Include="Content\css\basic.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.min.css" />
@@ -319,6 +320,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\dropzone.css" />
     <Content Include="Content\css\fonts.css" />
+    <Content Include="Content\css\lightbox.min.css" />
     <Content Include="Content\css\media.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -335,6 +337,9 @@
     <Content Include="Content\Images\eda5.jpg" />
     <Content Include="Content\Images\example-eat.jpg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\next.png" />
+    <Content Include="Content\Images\prev.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -376,7 +381,6 @@
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\README.md" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap-datetimepicker.js" />
@@ -628,15 +632,17 @@
     <Content Include="Scripts\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\dropzone.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="Scripts\jquery\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery\jquery.validate.js" />
+    <Content Include="Scripts\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -698,6 +704,8 @@
     <Content Include="Views\Gallery\_Photos.cshtml" />
     <Content Include="Views\Gallery\_Photo.cshtml" />
     <Content Include="Views\Gallery\EditAlbum.cshtml" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -709,8 +717,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707091718532_InitialCreate.resx">

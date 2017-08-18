@@ -4,10 +4,10 @@
     ViewBag.Title = @Model.Title;
 }
 <div class="container form-account">
-    <div class="Details-news">
-        <div class="Details-news__img" style="background-image: url(@Url.Content(Model.HeadImage)"> </div>
-        <div class="Details-news__Name">@Model.Name</div>
-        <div class="Details-news__Datetime">@Model.DateCreated</div>
+    <div class="details-news">
+        <div class="details-news__img" style="background-image: url(@Url.Content(Model.HeadImage)"> </div>
+        <div class="details-news__Name">@Model.Name</div>
+        <div class="details-news__Datetime">@Model.DateCreated</div>
         <hr/>
         <div class="Details-news__Body">@Html.Raw(Model.Body)</div>
     </div>

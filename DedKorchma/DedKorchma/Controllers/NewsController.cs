@@ -171,5 +171,15 @@ namespace DedKorchma.Controllers
             var location = Server.MapPath($"~{path}");
             System.IO.File.Delete(location);
         }
+        [HttpPost]
+        public void DeleteNewsHeadPhotoFromServer(string headImage)
+        {
+            var pathDefaultPhoto = ConfigurationManager.AppSettings["pathDefaultPhoto"];
+            if (headImage != "" && headImage != null&&headImage!=pathDefaultPhoto)
+            {
+                var location = Server.MapPath($"~{headImage}");
+                System.IO.File.Delete(location);
+            }
+        }
     }
 }

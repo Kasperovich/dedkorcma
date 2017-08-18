@@ -158,16 +158,17 @@
             uploadMultiple: false,
             dictDefaultMessage: "Что бы добавить заглавную картинку нажмите сюда либо перетяните картинку в эту область",
             success: function (file, response) {
+                console.log("ура");
                 $(".headPhoto").attr("src", response.url);
                 $("#HeadImage").val(response.fileName);
                 this.removeAllFiles(true);
                 $(".headPhoto").slideDown(200);
-                $("#postHeadImageDropZone").slideUp(200);
+                $("#newstHeadImageDropZone").slideUp(200);
             }
         }
         $(".headimage-block .overlay.black").click(function () {
             $(".headPhoto").slideUp(200);
-            $("#postHeadImageDropZone").slideDown(200);
+            $("#newstHeadImageDropZone").slideDown(200);
         });
 </script>
 }

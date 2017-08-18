@@ -30,22 +30,39 @@
             </div>
         }
         <hr />
-        <div class="album-details__photos">
             <div class="row">  
                     @Html.Action("PhotosPartial", "gallery", new { albumId = Model.AlbumId })
                 <div id="photos">
                 </div>
-            </div>
         </div>
     </div>
 </div>
         @section css{
+            <link href="~/Content/css/lightbox.min.css" rel="stylesheet" />
             <link href="~/Content/css/dropzone.css" rel="stylesheet" />
         }
 
         @section scripts{
+            <script src="~/Scripts/lightbox.min.js"></script>
             <script src="~/Scripts/dropzone.js"></script>
+            @Scripts.Render("~/bundles/jqueryval")
             <script>
+                $('body')
+                  .on("click",
+                     ".photo-delete-btn",
+                         function (e) {
+                             $(this).parent().slideUp();
+                             var photoId = $(this).parent().find(".album-details__photo").attr('id');
+                             var path = $(this).parent().find(".album-details__photo").attr('href');
+                             $.ajax({
+                                 beforeSend: function () {
+                                 },
+                                 type: 'POST',
+                                 data: { photoId:photoId,path:path},
+                                 url: '/Gallery/DeletePhoto'
+                             });
+
+        });
                 Dropzone.options.galleryDropZone = {
                     url: "/gallery/SaveGalleryPhoto",
                     addRemoveLinks: true,
@@ -56,6 +73,7 @@
                     uploadMultiple: false,
                     dictDefaultMessage: "Для того, что бы добавить фтографии в альбом нажмите сюда либо перетяните картинку в эту область",
                     success: function (file, response) {
+                        this.removeAllFiles(true);
                         console.log("ура");
                         var albumId = $("#AlbumId").val();
                         $.ajax({

@@ -1,5 +1,11 @@
 ﻿@model DedKorchma.Models.Entities.AlbumPhoto
 
 <div class="col-md-4 col-sm-4 col-xs-12">
-    <div class="album-details__photo" style="background-image: url(@Url.Content(Model.Path))"></div>
+    <div class="album-details__photos">
+        <a class="album-details__photo" href="@Model.Path" id="@Model.Id" style="background-image: url(@Url.Content(Model.Path))" data-lightbox="photo"></a>
+        @if (Request.IsAuthenticated)
+        {
+            <span class="photo-delete-btn">удалить</span>
+        }
+    </div>
 </div>

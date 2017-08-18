@@ -36,6 +36,7 @@ namespace DedKorchma.Models.ViewModels.GalleryViewModel
         {
             AlbumId = album.Id;
             NameOfAlbum = album.NameOfAlbum;
+            HeadImage = album.HeadImage;
             UrlPath = album.UrlPath;
             Title = album.Title;
             Description = album.Description;

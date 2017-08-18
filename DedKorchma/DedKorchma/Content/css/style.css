@@ -371,3 +371,23 @@ transition: .3s ease;
 .album-item__countPhoto{
     float:right;
 }
+.album-details__photos:hover .photo-delete-btn{display:block;}
+ .photo-delete-btn {
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    color: white;
+    border-radius: 0px 0px 0px 10px;
+    padding: 5px 10px 5px 10px;
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all .9s;
+    cursor:pointer;
+    display:none;
+}
+
+  .photo-delete-btn:hover{
+          background-color: darkred;
+  }

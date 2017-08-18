@@ -122,6 +122,18 @@ namespace DedKorchma.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        [Authorize(Roles = "TechAdmin,Admin")]
+        public ActionResult DeletePhoto(int photoId,string path)
+        {
+            if (GalleryService.DeletePhoto(photoId))
+            {
+                DeletePhotoFromServer(path);
+            }
+            return View();
+        }
+
         [Authorize(Roles = "TechAdmin,Admin")]
         public ActionResult SaveGalleryPhoto()
         {

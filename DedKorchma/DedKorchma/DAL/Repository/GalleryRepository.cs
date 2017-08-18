@@ -117,5 +117,20 @@ namespace DedKorchma.DAL.Repository
             context.Albums.Remove(album);
             return context.SaveChanges() > 1;
         }
+
+        public bool DeletePhoto(int photoid)
+        {
+            using(var context=new ContextDb())
+            {
+                return DeletePhoto(context, photoid);
+            }
+        }
+
+        internal bool DeletePhoto(ContextDb context,int photoId)
+        {
+            var photo = context.AlbumPhotos.Find(photoId);
+            context.AlbumPhotos.Remove(photo);
+            return context.SaveChanges() == 1;
+        }
     }
 }

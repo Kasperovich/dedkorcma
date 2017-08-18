@@ -102,5 +102,11 @@ namespace DedKorchma.BL.Service
             IGalleryRepository galleryRepo = new GalleryRepository();
             return galleryRepo.DeleteAlbum(albumId);
         }
+
+        public static bool DeletePhoto(int photoId)
+        {
+            IGalleryRepository galleryRepo = new GalleryRepository();
+            return galleryRepo.DeletePhoto(photoId);
+        }
     }
 }

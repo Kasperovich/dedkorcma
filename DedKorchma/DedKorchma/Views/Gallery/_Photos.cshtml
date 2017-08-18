@@ -2,7 +2,14 @@
 
         @foreach (var photo in Model)
         {
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="album-details__photo" style="background-image: url(@Url.Content(photo.Path))"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="album-details__photos">
+                        <a class="album-details__photo" href="@photo.Path" id="@photo.Id" style="background-image: url(@Url.Content(photo.Path))" data-lightbox="photo"></a>
+                         @if (Request.IsAuthenticated)
+                        {
+                        <span class="photo-delete-btn">удалить</span>
+                         }
+                    </div>
             </div>
         }
