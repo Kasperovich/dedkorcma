@@ -1,0 +1,128 @@
+﻿@model DedKorchma.Models.Entities.Category
+
+@{
+    ViewBag.Title = "Редактировать";
+}
+<div class="container form-account">
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                @Html.ActionLink("Вернутся в меню", "Index")
+            </div>
+
+            <h2>Редактировать категорию</h2>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-10 float-right">
+                                <div class="headimage-block">
+                                    <img class="headPhoto img-responsive" src="" alt="" style="display: none;" />
+                                    <div class="overlay black">
+                                        <span class="change-image">изменить картинку</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropzone col-md-10 float-right" id="categoryHeadImageDropZone"> </div>
+
+                            @Html.HiddenFor(s => s.HeadImage)
+                            @Html.ValidationMessageFor(m => m.HeadImage, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NameOfCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NameOfCategory, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NameOfCategory, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NameOfCategoryLat, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NameOfCategoryLat, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NameOfCategoryLat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.H1, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.H1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.H1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section css{
+    <link href="~/Content/css/lightbox.min.css" rel="stylesheet" />
+    <link href="~/Content/css/dropzone.css" rel="stylesheet" />
+    <link href="~/Content/css/basic.css" rel="stylesheet" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/dropzone.js"></script>
+
+    <script>
+        Dropzone.options.categoryHeadImageDropZone = {
+            url: "/menu/SaveMenuHeadPhoto",
+            addRemoveLinks: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            clickable: true,
+            maxFiles: 1,
+            uploadMultiple: false,
+            dictDefaultMessage: "Что бы добавить заглавную картинку нажмите сюда либо перетяните картинку в эту область",
+            success: function (file, response) {
+                $(".headPhoto").attr("src", response.url);
+                $("#HeadImage").val(response.fileName);
+                this.removeAllFiles(true);
+                $(".headPhoto").slideDown(200);
+                $("#categoryHeadImageDropZone").slideUp(200);
+            }
+        }
+        $(".headimage-block .overlay.black").click(function () {
+            $(".headPhoto").slideUp(200);
+            $("#categoryHeadImageDropZone").slideDown(200);
+        });
+    </script>
+}

@@ -139,3 +139,7 @@ D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.albu
 D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.AlbumAddHeadImage.resources
 D:\project\dedkorchma\DedKorchma\DedKorchma\bin\ImageProcessor.dll
 D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.deletePhoto.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.ctegoryHeadImage.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.product.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.product2.resources
+D:\project\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.product3.resources

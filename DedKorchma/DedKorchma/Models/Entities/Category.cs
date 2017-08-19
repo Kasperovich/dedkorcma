@@ -12,10 +12,11 @@ namespace DedKorchma.Models.Entities
         [Required]
         public string NameOfCategory { get; set; }
         public string NameOfCategoryLat { get; set; }
+        public string HeadImage { get; set; }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public string H1 { get; set; }
-
 
         public List<Product> Products { get; set; }
         public Category()

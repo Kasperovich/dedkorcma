@@ -209,7 +209,7 @@ namespace DedKorchma.Controllers
                 {
                     var file = Request.Files[fileName];
                     var filename =
-                        $"news-photo-{DateTime.Now:yy-MM-dd-HH-mm-ss-fff}-{Guid.NewGuid()}-{file.ContentLength}{Path.GetExtension(file.FileName)}";
+                        $"gallery-head-photo-{DateTime.Now:yy-MM-dd-HH-mm-ss-fff}-{Guid.NewGuid()}-{file.ContentLength}{Path.GetExtension(file.FileName)}";
 
                     fName = filename;
 
