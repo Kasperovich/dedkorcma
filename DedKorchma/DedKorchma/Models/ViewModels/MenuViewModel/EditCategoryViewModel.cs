@@ -36,6 +36,8 @@ namespace DedKorchma.Models.ViewModels.MenuViewModel
             Description = category.Description;
             H1 = category.H1;
         }
+
+        public EditCategoryViewModel() { }
         public Category ToEntity()
         {
             return new Category

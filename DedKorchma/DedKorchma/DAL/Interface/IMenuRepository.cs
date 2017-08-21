@@ -10,6 +10,9 @@ namespace DedKorchma.DAL.Interface
     {
         bool CreateCategory(Category category);
         bool EditCategory(Category category);
-        Category GetById(int categoryId);
+        bool CreateProduct(Product product);
+        bool EditProduct(Product product);
+        Category GetCategoryById(int categoryId);
+        Product GetProductById(int productId);
     }
 }

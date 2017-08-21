@@ -325,7 +325,9 @@
     <Compile Include="Models\ViewModels\GalleryViewModel\GalleryViewModel.cs" />
     <Compile Include="Models\ViewModels\Manage\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\MenuViewModel\CreateCategoryViewModel.cs" />
+    <Compile Include="Models\ViewModels\MenuViewModel\CreateProductViewModel.cs" />
     <Compile Include="Models\ViewModels\MenuViewModel\EditCategoryViewModel.cs" />
+    <Compile Include="Models\ViewModels\MenuViewModel\EditProductViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\CreateNewsViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\DetailsNewsViewModel.cs" />
     <Compile Include="Models\ViewModels\NewsViewModel\EditNewsViewModel.cs" />

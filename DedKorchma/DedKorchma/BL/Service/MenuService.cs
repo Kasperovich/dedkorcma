@@ -28,13 +28,25 @@ namespace DedKorchma.BL.Service
         {
             var pathMenuPhoto = ConfigurationManager.AppSettings["pathMenuPhoto"];
             IMenuRepository menuRepo = new MenuRepository();
-            var category = menuRepo.GetById(categoryId);
+            var category = menuRepo.GetCategoryById(categoryId);
             if (category == null)
             {
                 throw new NotFoundException("Категория не найдена", "");
             }
             category.HeadImage = pathMenuPhoto + category.HeadImage;
             return category;
+        }
+
+        public static bool CreateProduct(Product product)
+        {
+            IMenuRepository menuRepo=new MenuRepository();
+            return menuRepo.CreateProduct(product);
+        }
+
+        public static bool EditProduct(Product product)
+        {
+            IMenuRepository menuRepo=new MenuRepository();
+            return menuRepo.EditProduct(product);
         }
     }
 }

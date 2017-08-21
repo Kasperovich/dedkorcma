@@ -34,6 +34,7 @@ namespace DedKorchma.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult EditCategory(int categoryId)
         {
             try
@@ -47,12 +48,30 @@ namespace DedKorchma.Controllers
             }
         }
 
-        public ActionResult EditController(EditCategoryViewModel category)
+        [HttpPost]
+        public ActionResult EditCategory(EditCategoryViewModel category)
         {
             if (!ModelState.IsValid) return View();
             if (MenuService.EditCategory(category.ToEntity()))
             {
                 return RedirectToAction("Index", "menu");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct(CreateProductViewModel product)
+        {
+            if (!ModelState.IsValid) return View();
+            if (MenuService.CreateProduct(product.ToEntity()))
+            {
+                return RedirectToAction("index", "menu");
             }
             return View();
         }
