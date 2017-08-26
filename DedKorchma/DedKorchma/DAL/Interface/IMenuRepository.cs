@@ -14,5 +14,6 @@ namespace DedKorchma.DAL.Interface
         bool EditProduct(Product product);
         Category GetCategoryById(int categoryId);
         Product GetProductById(int productId);
+        IList<Category> GetAllCategories();
     }
 }

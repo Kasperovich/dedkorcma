@@ -24,7 +24,7 @@ namespace DedKorchma.BL.Service
             return menuRepo.EditCategory(category);
         }
 
-        public static Category GetbyId(int categoryId)
+        public static Category GetCategoryById(int categoryId)
         {
             var pathMenuPhoto = ConfigurationManager.AppSettings["pathMenuPhoto"];
             IMenuRepository menuRepo = new MenuRepository();
@@ -37,6 +37,19 @@ namespace DedKorchma.BL.Service
             return category;
         }
 
+        public static Product GetProductById(int productId)
+        {
+            var pathMenuPhoto = ConfigurationManager.AppSettings["pathMenuPhoto"];
+            IMenuRepository menuRepo = new MenuRepository();
+            var product = menuRepo.GetProductById(productId);
+            if (product == null)
+            {
+                throw new NotFoundException("Блюдо не найдено", "");
+            }
+            product.HeadImage = pathMenuPhoto + product.HeadImage;
+            return product;
+        }
+
         public static bool CreateProduct(Product product)
         {
             IMenuRepository menuRepo=new MenuRepository();
@@ -47,6 +60,12 @@ namespace DedKorchma.BL.Service
         {
             IMenuRepository menuRepo=new MenuRepository();
             return menuRepo.EditProduct(product);
+        }
+
+        public static IList<Category> GetAllCategories()
+        {
+            IMenuRepository menuRepo = new MenuRepository();
+            return menuRepo.GetAllCategories();
         }
     }
 }

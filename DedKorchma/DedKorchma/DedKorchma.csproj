@@ -732,6 +732,8 @@
     <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.map" />
     <Content Include="Views\Menu\CreateCategory.cshtml" />
     <Content Include="Views\Menu\EditCategory.cshtml" />
+    <Content Include="Views\Menu\CreateProduct.cshtml" />
+    <Content Include="Views\Menu\EditProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

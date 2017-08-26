@@ -39,7 +39,7 @@ namespace DedKorchma.Controllers
         {
             try
             {
-                var category = MenuService.GetbyId(categoryId);
+                var category = MenuService.GetCategoryById(categoryId);
                 return View(new EditCategoryViewModel(category));
             }
             catch(Exception ex)
@@ -62,6 +62,8 @@ namespace DedKorchma.Controllers
         [HttpGet]
         public ActionResult CreateProduct()
         {
+            var categories = MenuService.GetAllCategories();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "NameOfCategory");
             return View();
         }
 
@@ -75,6 +77,34 @@ namespace DedKorchma.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult EditProduct(int productId)
+        {
+            try
+            {
+                var product = MenuService.GetProductById(productId);
+                var categories = MenuService.GetAllCategories();
+                ViewBag.CategoryId = new SelectList(categories, "Id", "NameOfCategory");
+                return View(new EditProductViewModel(product));
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(EditProductViewModel product)
+        {
+            if (!ModelState.IsValid) return View();
+            if (MenuService.EditProduct(product.ToEntity()))
+            {
+                RedirectToAction("index", "menu");
+            }
+            return View();
+        }
+
         public ActionResult SaveCategoryHeadPhoto()
         {
             var pathMenuPhoto = System.Configuration.ConfigurationManager.AppSettings["pathMenuPhoto"];

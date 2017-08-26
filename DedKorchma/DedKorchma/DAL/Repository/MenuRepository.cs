@@ -94,5 +94,18 @@ namespace DedKorchma.DAL.Repository
             entry.State = EntityState.Modified;
             return context.SaveChanges() == 1;
         }
+
+        public IList<Category> GetAllCategories()
+        {
+            using (var context=new ContextDb())
+            {
+                return GetAllCategories(context);
+            }
+        }
+
+        internal IList<Category> GetAllCategories(ContextDb context)
+        {
+            return context.Categories.ToList();
+        }
     }
 }
