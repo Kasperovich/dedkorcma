@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DedKorchma.Models.Entities.Category>
+
+@{
+    ViewBag.Title = "Меню";
+}
+<div class="container form-account">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Меню</h2>
+            <hr/>
+            <p>
+                @Html.ActionLink("Создать категорию", "CreateCategory")
+                <span>|</span>
+                @Html.ActionLink("Создать блюдо", "CreateProduct")
+            </p>
+
+            @foreach (var item in Model)
+            {
+                <div class="menu-category">
+                    <div class="menu-category__Name">
+                        @item.NameOfCategory
+                    </div>
+                    <div class="menu-category__Image">
+                        @item.HeadImage
+                    </div>
+
+                    @foreach (var product in item.Products)
+                    {
+                        <div class="menu-product__name">
+                            @product.NameOfProduct
+                        </div>
+                        <div class="menu-product__image">
+                            @product.HeadImage
+                        </div>
+                        <div class="menu-product__price">
+                            @product.Price
+                        </div>
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

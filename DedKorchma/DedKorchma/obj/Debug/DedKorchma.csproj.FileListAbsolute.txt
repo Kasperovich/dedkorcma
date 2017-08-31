@@ -288,3 +288,4 @@ E:\Projects\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.pro
 E:\Projects\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.csproj.GenerateResource.Cache
 E:\Projects\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.dll
 E:\Projects\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.pdb
+E:\Projects\dedkorchma\DedKorchma\DedKorchma\obj\Debug\DedKorchma.Migrations.ProductWeight.resources

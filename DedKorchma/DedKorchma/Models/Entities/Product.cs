@@ -14,6 +14,7 @@ namespace DedKorchma.Models.Entities
         public string HeadImage { get; set; }
         public double Price { get; set; }
         public int? Discount { get; set; }
+        public string Weight { get; set; }
         public bool IsVisible { get; set; }
 
         public string UrlPath { get; set; }

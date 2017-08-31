@@ -305,6 +305,10 @@
     <Compile Include="Migrations\201708191156006_product3.Designer.cs">
       <DependentUpon>201708191156006_product3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708310623348_ProductWeight.cs" />
+    <Compile Include="Migrations\201708310623348_ProductWeight.Designer.cs">
+      <DependentUpon>201708310623348_ProductWeight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationRoleManager .cs" />
     <Compile Include="Models\Entities\Album.cs" />
@@ -734,6 +738,7 @@
     <Content Include="Views\Menu\EditCategory.cshtml" />
     <Content Include="Views\Menu\CreateProduct.cshtml" />
     <Content Include="Views\Menu\EditProduct.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -785,6 +790,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708191156006_product3.resx">
       <DependentUpon>201708191156006_product3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310623348_ProductWeight.resx">
+      <DependentUpon>201708310623348_ProductWeight.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
